@@ -1,21 +1,66 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center title">
+        <strong> Weapon </strong> and <strong>Spell</strong> Shop
+      </h1>
+    </div>
+  </div>
 
-<router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-md-12">
+      <div *ngFor="let item of items; let in = index">
+        <div class="col-md-4" style="float: left;">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="data">
+                <h1>{{ item.name }}</h1>
+                <p>Price : {{ item.price }}</p>
+                <img class="images" [src]="item.image" style="width: 100%;" />
+                <p style="text-align: justify;">{{ item.desc }}</p>
+              </div>
+              <div class="row col-md-12">
+                <button (click)="addToCart(item, in)" [ngClass]="item.add">
+                  {{ item.button }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default min-h1">
+        <div class="panel-body">
+          <div class="total lists">
+            <h3><strong> Weapon </strong> and <strong>Spell</strong> List</h3>
+
+            <label>Total : </label>
+            <label>{{ total }}</label>
+            <br /><br />
+            <div class="col-md-6"><label> Name </label></div>
+            <div class="col-md-6"><label> Price </label></div>
+            <div *ngFor="let list of listCart; let x = index">
+              <div class="lists">
+                <div class="col-md-6">
+                  <p>{{ x + 1 }} {{ list.name }}</p>
+                </div>
+                <div class="col-md-6">
+                  <p>{{ list.price }}</p>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <br />
+            <button class="pay btn btn-primary" (click)="payBtn(total)">
+              Pay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
